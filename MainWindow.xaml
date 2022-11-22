@@ -46,7 +46,35 @@
             <Button Content="Update" Click="Update_Button" Margin="227,0,189,0" Height="28" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
             <Button Content="Delete" Click="Delete_Button" Grid.Row="0" Grid.Column="1" Margin="133,0,10,0"/>
         </Grid>
+        <Label></Label>
+        <Grid>
+            <DataGrid x:Name="EmployeeGrid" HorizontalAlignment="Left" 
+                  IsReadOnly="True" ItemsSource="{Binding}" 
+                  AutoGenerateColumns="False" Margin="0,0,0,-208" Width="790">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="QLId" Width="100" Binding="{Binding QLId}"/>
+                    <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="JoiningDate" Width="100" Binding="{Binding JoiningDate}"/>
+                    <DataGridTextColumn Header="Email" Width="100" Binding="{Binding Email}"/>
+                    <DataGridTextColumn Header="MobileNumber" Width="100" Binding="{Binding MobileNumber}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="Edit_Button" Content="Edit" CommandParameter="{Binding Id}" Click="Edit_Button"  Width="50"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="Delete_Button" Content="Delete" CommandParameter="{Binding Id}" Click="Delete_Button"  Width="50"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
 
+            </DataGrid>
+        </Grid>
     </StackPanel>
 
 </Window>

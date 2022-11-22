@@ -1,5 +1,6 @@
 ﻿using NHibernate;
 using System;
+using System.Linq;
 using System.Windows;
 
 namespace NHibernateWPF
@@ -13,41 +14,111 @@ namespace NHibernateWPF
         {
             InitializeComponent();
             ISession session = SessionClass.OpenSession();
+            GetAllEmployees();
         }
 
         private Employee AddEmployee()
         {
             Employee emp = new Employee();
-            //emp.EmpId = Convert.ToInt32(EmpId.Text);
             emp.Name = Name.Text;
-            emp.JoiningDate = Convert.ToDateTime(JoiningDate.Text);
+            emp.JoiningDate = JoiningDate.Text;
             emp.Email = EmailId.Text;
             emp.MobileNumber = MobileNumber.Text;
             emp.QLId = QLId.Text;
             return emp;
         }
+        private void GetAllEmployees()
+        {
+            try
+            {
+                ISession session = SessionClass.OpenSession();
+                var EmployeeList = session.Query<Employee>().ToList();
+                EmployeeGrid.ItemsSource = EmployeeList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void DisplayEmployee(Employee emp)
+        {
+            try
+            {
+                QLId.Text = emp.QLId;
+                Name.Text = emp.Name;
+                JoiningDate.Text = emp.JoiningDate; 
+                EmailId.Text = emp.Email;
+                MobileNumber.Text = emp.MobileNumber;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void Update_Button(object sender, RoutedEventArgs e)
         {
-            Employee emp = new Employee();
-            ISession session = SessionClass.OpenSession();
-            session.Update(emp);
-            MessageBox.Show("Employee Details have been added");
+            try
+            {
+                ISession session = SessionClass.OpenSession();
+                ITransaction transaction = session.BeginTransaction();
+                Employee employee = EmployeeGrid.SelectedItem as Employee;
+                Employee emp=AddEmployee();
+                emp.Id = employee.Id;
+                session.Update(emp);
+                transaction.Commit();
+                GetAllEmployees();
+                MessageBox.Show("Employee Details have been Updated");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void Add_Button(object sender, RoutedEventArgs e)
         {
-            Employee emp = AddEmployee();
-            ISession session = SessionClass.OpenSession();
-            session.Save(emp);
-            MessageBox.Show("Employee Details have been added");
+            try
+            {
+                Employee emp = AddEmployee();
+                ISession session = SessionClass.OpenSession();
+                session.Save(emp);
+                GetAllEmployees();
+                MessageBox.Show("Employee Details have been added");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
+         private void Edit_Button(object sender, RoutedEventArgs e)
+         {
+            try
+            {
+                var Employee = EmployeeGrid.SelectedItem;
+                DisplayEmployee(Employee as Employee);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void Delete_Button(object sender, RoutedEventArgs e)
         {
-            Employee emp = AddEmployee();
-            ISession session = SessionClass.OpenSession();
-            session.Delete(emp);
-            MessageBox.Show("Employee Details have been deleted");
+            try
+            {
+                var Employee = EmployeeGrid.SelectedItem as Employee;
+                ISession session = SessionClass.OpenSession();
+                ITransaction transaction = session.BeginTransaction();
+                session.Delete(Employee);
+                transaction.Commit();
+                GetAllEmployees();
+                MessageBox.Show("Employee Details have been deleted");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
     }
 }
