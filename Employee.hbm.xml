@@ -3,12 +3,13 @@
                    assembly="NHibernateWPF"
                    namespace="NHibernateWPF">
 	<class name="NHibernateWPF.Employee">
-		<id name="EmpId">
+		<id name="Id">
 			<generator class="identity" />
 		</id>
 		<property name="Name" />
 		<property name="JoiningDate" />
 		<property name="Email" />
 		<property name="MobileNumber" />
+		<property name="QLId" />
 	</class>
 </hibernate-mapping>

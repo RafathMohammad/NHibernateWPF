@@ -7,45 +7,45 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        <Label Width="173" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="0,0,0,26" Grid.RowSpan="2">EmpId</Label>
-        <TextBox x:Name="EmpId"  Grid.Row="0" Grid.ColumnSpan="2" Margin="150,0,279,5"/>
-        <Label Width="100" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0">Name</Label>
-        <TextBox x:Name="Name"  Grid.Row="1" Grid.ColumnSpan="2" Margin="150,2,279,27" Grid.RowSpan="2"/>
-        <Label Width="100" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0">JoiningDate</Label>
-        <DatePicker x:Name="JoiningDate" Grid.Row="2" Grid.ColumnSpan="2" Margin="150,5,279,26" Grid.RowSpan="2"/>
-        <Label Width="100" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0">EmailId</Label>
-        <TextBox x:Name="EmailId" Grid.Row="3" Grid.ColumnSpan="2" Margin="150,7,279,26" Grid.RowSpan="2"/>
-        <Label Width="100" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="0">MobileNumber</Label>
-        <TextBox x:Name="MobileNumber" Grid.Row="4" Grid.ColumnSpan="2" Margin="150,5,279,0" Grid.RowSpan="2"/>
-    </Grid>
-    <Label></Label>
-    <Grid Width="795">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Add" Click="Add_Button" Grid.Row="0" Grid.Column="0" Margin="70,0,0,0" HorizontalAlignment="Left" Width="106"/>
-        <Button Content="Update" Click="Update_Button" Margin="227,0,189,0" Height="28" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-        <Button Content="Delete" Click="Delete_Button" Grid.Row="0" Grid.Column="1" Margin="133,0,10,0"/>
-    </Grid>
+            <Label Width="173" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="0,0,0,26" Grid.RowSpan="2">QLId</Label>
+            <TextBox x:Name="QLId"  Grid.Row="0" Grid.ColumnSpan="2" Margin="150,0,279,5"/>
+            <Label Width="100" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0">Name</Label>
+            <TextBox x:Name="Name"  Grid.Row="1" Grid.ColumnSpan="2" Margin="150,2,279,27" Grid.RowSpan="2"/>
+            <Label Width="100" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0">JoiningDate</Label>
+            <DatePicker x:Name="JoiningDate" Grid.Row="2" Grid.ColumnSpan="2" Margin="150,5,279,26" Grid.RowSpan="2"/>
+            <Label Width="100" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0">EmailId</Label>
+            <TextBox x:Name="EmailId" Grid.Row="3" Grid.ColumnSpan="2" Margin="150,7,279,26" Grid.RowSpan="2"/>
+            <Label Width="100" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="0">MobileNumber</Label>
+            <TextBox x:Name="MobileNumber" Grid.Row="4" Grid.ColumnSpan="2" Margin="150,5,279,0" Grid.RowSpan="2"/>
+        </Grid>
+        <Label></Label>
+        <Grid Width="795">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Add" Click="Add_Button" Grid.Row="0" Grid.Column="0" Margin="70,0,0,0" HorizontalAlignment="Left" Width="106"/>
+            <Button Content="Update" Click="Update_Button" Margin="227,0,189,0" Height="28" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <Button Content="Delete" Click="Delete_Button" Grid.Row="0" Grid.Column="1" Margin="133,0,10,0"/>
+        </Grid>
 
     </StackPanel>
 
