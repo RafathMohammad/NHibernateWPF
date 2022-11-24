@@ -42,7 +42,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Name="Add" Content="Add" Click="Add_Button" Grid.Row="0" Grid.Column="0" Margin="181,0,104,0"/>
-            <Button Content="Update" Click="Update_Button" Margin="366,0,319,0" Height="28" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <Button Name="Update" Content="Update" Click="Update_Button" Margin="366,0,319,0" Height="28" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
         </Grid>
         <Label></Label>
         <Grid>

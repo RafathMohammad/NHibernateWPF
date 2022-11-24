@@ -1,5 +1,6 @@
 ﻿using NHibernate;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 
@@ -15,6 +16,7 @@ namespace NHibernateWPF
             InitializeComponent();
             ISession session = SessionClass.OpenSession();
             GetAllEmployees();
+            Update.IsEnabled = false;
         }
 
         private Employee AddEmployee()
@@ -64,26 +66,27 @@ namespace NHibernateWPF
                 ITransaction transaction = session.BeginTransaction();
                 Employee employee = EmployeeGrid.SelectedItem as Employee;
                 Employee emp=AddEmployee();
-                if (emp.Name == "" && emp.QLId == "" && emp.JoiningDate == "" && emp.MobileNumber == "" && emp.Email == "")
+                if (employee == null)
+                {
+                    MessageBox.Show("Cannot update the details which are not added, please add the details first");
+                }
+                else if (emp.Name == "" && emp.QLId == "" && emp.JoiningDate == "" && emp.MobileNumber == "" && emp.Email == "")
                 {
                     MessageBox.Show("Please enter the Details to Update");
                 }
+                else if (emp.Name == employee.Name && emp.QLId == employee.QLId && DateTime.Parse(emp.JoiningDate, CultureInfo.InvariantCulture) == DateTime.Parse(employee.JoiningDate, CultureInfo.InvariantCulture) && emp.MobileNumber == employee.MobileNumber && emp.Email == employee.Email)
+                {
+                    MessageBox.Show("Employee details are already upto date, No changes added");
+                }
                 else
                 {
-                    if (employee==null)
-                    {
-                        MessageBox.Show("Cannot update the details which are not added, please add the details first");
-                    }
-                    else
-                    {
-                        emp.Id = employee.Id;
-                        session.Update(emp);
-                        transaction.Commit();
-                        Clear_all();
-                        Add.IsEnabled = true;
-                        GetAllEmployees();
-                        MessageBox.Show("Employee Details have been Updated");
-                    }
+                    emp.Id = employee.Id;
+                    session.Update(emp);
+                    transaction.Commit();
+                    Clear_all();
+                    Add.IsEnabled = true;
+                    GetAllEmployees();
+                    MessageBox.Show("Employee Details have been Updated");
                 }
             }
             catch (Exception ex)
@@ -118,6 +121,7 @@ namespace NHibernateWPF
          {
             try
             {
+                Update.IsEnabled = true;
                 var Employee = EmployeeGrid.SelectedItem;
                 Add.IsEnabled = false;
                 DisplayEmployee(Employee as Employee);
