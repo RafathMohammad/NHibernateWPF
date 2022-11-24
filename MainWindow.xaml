@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
+        <Label Height="36" FontSize="20" FontWeight="Bold">Enter the Employee Details</Label>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -20,7 +21,6 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
             <Label Width="173" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="0,0,0,26" Grid.RowSpan="2">QLId</Label>
             <TextBox x:Name="QLId"  Grid.Row="0" Grid.ColumnSpan="2" Margin="150,0,279,5"/>
             <Label Width="100" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0">Name</Label>
@@ -40,17 +40,21 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="Add" Click="Add_Button" Grid.Row="0" Grid.Column="0" Margin="70,0,0,0" HorizontalAlignment="Left" Width="106"/>
-            <Button Content="Update" Click="Update_Button" Margin="227,0,189,0" Height="28" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-            <Button Content="Delete" Click="Delete_Button" Grid.Row="0" Grid.Column="1" Margin="133,0,10,0"/>
+            <Button Name="Add" Content="Add" Click="Add_Button" Grid.Row="0" Grid.Column="0" Margin="181,0,104,0"/>
+            <Button Content="Update" Click="Update_Button" Margin="366,0,319,0" Height="28" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
         </Grid>
         <Label></Label>
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="189*"/>
+                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="189*"/>
+            </Grid.ColumnDefinitions>
             <DataGrid x:Name="EmployeeGrid" HorizontalAlignment="Left" 
                   IsReadOnly="True" ItemsSource="{Binding}" 
-                  AutoGenerateColumns="False" Margin="0,0,0,-208" Width="790">
+                  AutoGenerateColumns="False" Margin="0,0,0,-208" Width="790" Grid.ColumnSpan="4">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="QLId" Width="100" Binding="{Binding QLId}"/>
                     <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}"/>

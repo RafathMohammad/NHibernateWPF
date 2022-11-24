@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<!--<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-configuration xmlns="urn:nhibernate-configuration-2.2">
 	<session-factory>
 		<property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
@@ -7,4 +7,4 @@
 		<property name="connection.connection_string">Data Source=.;Initial Catalog=MY_OWN_Database;Integrated Security=True</property>
 		<property name="show_sql">true</property>
 	</session-factory>
-</hibernate-configuration>
+</hibernate-configuration>-->

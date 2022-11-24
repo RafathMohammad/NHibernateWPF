@@ -64,11 +64,27 @@ namespace NHibernateWPF
                 ITransaction transaction = session.BeginTransaction();
                 Employee employee = EmployeeGrid.SelectedItem as Employee;
                 Employee emp=AddEmployee();
-                emp.Id = employee.Id;
-                session.Update(emp);
-                transaction.Commit();
-                GetAllEmployees();
-                MessageBox.Show("Employee Details have been Updated");
+                if (emp.Name == "" && emp.QLId == "" && emp.JoiningDate == "" && emp.MobileNumber == "" && emp.Email == "")
+                {
+                    MessageBox.Show("Please enter the Details to Update");
+                }
+                else
+                {
+                    if (employee==null)
+                    {
+                        MessageBox.Show("Cannot update the details which are not added, please add the details first");
+                    }
+                    else
+                    {
+                        emp.Id = employee.Id;
+                        session.Update(emp);
+                        transaction.Commit();
+                        Clear_all();
+                        Add.IsEnabled = true;
+                        GetAllEmployees();
+                        MessageBox.Show("Employee Details have been Updated");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -81,9 +97,17 @@ namespace NHibernateWPF
             {
                 Employee emp = AddEmployee();
                 ISession session = SessionClass.OpenSession();
-                session.Save(emp);
-                GetAllEmployees();
-                MessageBox.Show("Employee Details have been added");
+                if (emp.Name == "" && emp.QLId == "" && emp.JoiningDate == "" && emp.MobileNumber == "" && emp.Email == "")
+                {
+                    MessageBox.Show("Please enter the Details to add");
+                }
+                else
+                {
+                    session.Save(emp);
+                    Clear_all();
+                    GetAllEmployees();
+                    MessageBox.Show("Employee Details have been added");
+                }
             }
             catch (Exception ex)
             {
@@ -95,6 +119,7 @@ namespace NHibernateWPF
             try
             {
                 var Employee = EmployeeGrid.SelectedItem;
+                Add.IsEnabled = false;
                 DisplayEmployee(Employee as Employee);
             }
             catch (Exception ex)
@@ -119,6 +144,20 @@ namespace NHibernateWPF
                 MessageBox.Show(ex.Message);
             }
         }
-
+        private void Clear_all()
+        {
+            try
+            {
+                Name.Text = "";
+                QLId.Text = "";
+                EmailId.Text = "";
+                MobileNumber.Text = "";
+                JoiningDate.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
